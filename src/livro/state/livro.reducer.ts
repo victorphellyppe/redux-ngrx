@@ -26,23 +26,23 @@ export const livroReducer = createReducer(
   initialState,
   on(livroActions.carregarLivros, (stateAtual) => {
     console.log('Passou por aqui', stateAtual);
-
     return {
       ...stateAtual,
-      livros: livrosIniciais,
+      status: LivroStatus.loading
+    }
+  }),
+  on(livroActions.livrosCarregadosSucesso, (stateAtual, livroObj) => {
+    return {
+      ...stateAtual,
+      livros: livroObj.livros,
       status: LivroStatus.success
+    }
+  }),
+  on(livroActions.adicionarLivros, (stateAtual, livro) => {
+    return {
+      ...stateAtual,
+      livros: [...stateAtual.livros, livro]
     }
   })
 )
 
-
-const livrosIniciais = [
-  {
-    id: 1,
-    nome: 'Harry potter',
-  },
-  {
-    id: 2,
-    nome: 'Senhor dos Aneis',
-  },
-];

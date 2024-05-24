@@ -10,19 +10,17 @@ export class LivroService {
     return [
       {
         id: 1,
-        nome: 'Harry potter',
+        nome: 'Harry Potter'
       },
       {
         id: 2,
-        nome: 'Senhor dos Aneis',
-      },
-    ];
+        nome: 'Senhor do Aneis'
+      }
+    ]
   }
 
-  obterLivrosAPI() {
-    of(this.obterLivros)
-    .pipe(
-      delay(1000)
-    );
+  obterLivrosApi(){
+    return of(this.obterLivros())
+      .pipe(delay(1000));
   }
 }
